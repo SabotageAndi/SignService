@@ -3,7 +3,14 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp1.1;netcoreapp2.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <NuSpecFile>..\SignClient.nuspec</NuSpecFile>
+    <PackAsTool>true</PackAsTool>
+    <Description>Client-side tools for Sign Service</Description>    
+    <Authors>Oren Novotny</Authors>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageProjectUrl>https://github.com/onovotny/SignService</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/onovotny/SignService/master/LICENSE</PackageLicenseUrl>
+    <NETCorePlatformsImplicitPackageVersion Condition="'$(TargetFramework)' == 'netcoreapp2.0'">2.0.1</NETCorePlatformsImplicitPackageVersion>
+    <NETCorePlatformsImplicitPackageVersion Condition="'$(TargetFramework)' == 'netcoreapp1.1'">1.1.0</NETCorePlatformsImplicitPackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,11 +28,5 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
   </ItemGroup>
-
-  <Target Name="SetVersionForNuSpec" BeforeTargets="_IntermediatePack" DependsOnTargets="GetBuildVersion">
-    <PropertyGroup>
-      <NuSpecProperties>version=$(PackageVersion)</NuSpecProperties>
-    </PropertyGroup>
-  </Target>
 
 </Project>
