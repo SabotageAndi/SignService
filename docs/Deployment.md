@@ -38,21 +38,21 @@ Note: Only global admins can reset passwords if they need to be changed; any use
 
 The `InstallUtility` automates the creation of resources the application needs:
 
-- Application for SignService
-- Application for SignClient
+- Azure AD Application for SignService
+- Azure AD Application for SignClient
 - Extension Attributes for storing per-user configuration
 - OAuth permissions between services, Graph, and Key Vault
 - Azure Resource Group for holding the Key Vaults
 - Granting Admin Consent for the required permissions
 
-The application entries will be created in the directory as `SignService Server` and `SignService Client - {service appId}`. You may install multiple SignService environments in a directory. If you choose, you can add a suffix, so they appear as `SignService Server (PROD)` or `SignService Server (TEST)`, etc. The `InstallUtility` takes an optional single argument, like `PROD` or `TEST` if you want.
+The Azure AD application entries will be created in the directory as `SignService Server` and `SignService Client - {service appId}`. You may install multiple SignService environments in a directory. If you choose, you can add a suffix, so they appear as `SignService Server (PROD)` or `SignService Server (TEST)`, etc. The `InstallUtility` takes an optional single argument, like `PROD` or `TEST` if you want.
 
 The `InstallUtility` can be run multiple times to add/update configuration, should it change, and also display the settings you need to configure in your applications. Note that the `clientSecret` is only displayed the first time since the value cannot be retrieved. You can always create additional ones in the Azure Portal.
 
 Before you run the utility, have the following information on-hand:
 
 - Azure Subscription Id
-- Azure Region (`eastus`, `westus`, etc)
+- Azure Region (`eastus`, `westus`, etc (see https://github.com/Azure/azure-libraries-for-net/blob/master/src/ResourceManagement/ResourceManager/Region.cs)
 
 You'll need those during the installer steps.
 
@@ -99,7 +99,7 @@ A `B1` or higher instance works for this. The service keeps its runtime configur
 
 ## 4. Update `ReplyUrl`
 
-In the Azure Portal, navigate to your `SignService Server` application, and add a `ReplyUrl` entry with your hostname, such as `https://your-website-name.azurewebsites.net/signin-oidc`
+In the Azure Portal, navigate to your `SignService Server` Azure AD application, and add a `ReplyUrl` entry with your hostname, such as `https://your-website-name.azurewebsites.net/signin-oidc`
 
 ## 5. Build and publish
 
