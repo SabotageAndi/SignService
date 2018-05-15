@@ -28,3 +28,17 @@ steps:
     pathToPublish: $(Build.ArtifactStagingDirectory)
     artifactType: container
     artifactName: SignService
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish InstallUtility Artifact
+  inputs:
+    pathToPublish: $(Build.SourcesDirectory)\src\InstallUtility\bin\$(BuildConfiguration)\net47\
+    artifactType: container
+    artifactName: InstallUtility
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish SignClient Artifact
+  inputs:
+    pathToPublish: $(Build.SourcesDirectory)\src\SignClient\bin\$(BuildConfiguration)\net47\
+    artifactType: container
+    artifactName: SignClient
