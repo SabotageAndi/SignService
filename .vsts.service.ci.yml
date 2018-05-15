@@ -37,8 +37,15 @@ steps:
     artifactName: InstallUtility
 
 - task: PublishBuildArtifacts@1
-  displayName: Publish SignClient Artifact
+  displayName: Publish SignClient .NET Core 1.1 Artifact
   inputs:
-    pathToPublish: $(Build.SourcesDirectory)\src\SignClient\bin\$(BuildConfiguration)\net47\
+    pathToPublish: $(Build.SourcesDirectory)\src\SignClient\bin\$(BuildConfiguration)\netcoreapp1.1\
     artifactType: container
-    artifactName: SignClient
+    artifactName: SignClient .NET Core 1.1
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish SignClient .NET Core 2.0 Artifact
+  inputs:
+    pathToPublish: $(Build.SourcesDirectory)\src\SignClient\bin\$(BuildConfiguration)\netcoreapp2.0\
+    artifactType: container
+    artifactName: SignClient .NET Core 2.0
